@@ -1,0 +1,166 @@
+{
+   "servers":[
+      {
+        "outputWriters":[
+           {
+              "@class":"com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url":"http://127.0.0.1:8086/",
+              "database":"solrjmx",
+              "username":"admin",
+              "password":"admin"
+           }
+        ],
+         "host":"localhost",
+         "alias":"solr-1.allstate.com",
+         "port":"3101",
+         "queries":[
+            {
+               "obj":"java.lang:type=Memory",
+               "resultAlias":"jvm_memory",
+               "attr":[ "HeapMemoryUsage", "NonHeapMemoryUsage"
+               ]},
+            {
+               "obj":"java.lang:type=MemoryPool,name=CMS Old Gen",
+               "resultAlias":"jvm_memory_pool_cms",
+               "attr":["Usage"]
+            },
+            {
+               "obj":"java.lang:type=MemoryPool,name=Par Eden Space",
+               "resultAlias":"jvm_memory_pool_eden_space",
+               "attr":["Usage"]
+            },
+            {
+               "obj":"java.lang:type=MemoryPool,name=Par Survivor Space",
+               "resultAlias":"jvm_memory_pool_surv_space",
+               "attr":["Usage"]
+            },
+            {
+               "obj":"java.lang:type=GarbageCollector,name=*",
+               "resultAlias":"jvm_gc",
+               "attr":[ "Name", "CollectionCount", "CollectionTime"]
+            },
+            {
+               "obj":"java.lang:type=Threading",
+               "resultAlias":"jvm_thread",
+               "attr":[ "ThreadCount", "PeakThreadCount", "DaemonThreadCount", "TotalStartedThreadCount"]
+            },
+            {
+               "obj":"solr/*:type=queryResultCache,id=*",
+               "resultAlias":"cache_queryresult",
+               "attr":[ "cumulative_lookups","cumulative_hits", "cumulative_hits", "cumulative_hitratio", "cumulative_inserts", "cumulative_evictions"]
+            },
+            {
+               "obj":"solr/*:type=fieldValueCache,id=*",
+               "resultAlias":"cache_fieldvalue",
+               "attr":[ "cumulative_lookups","cumulative_hits", "cumulative_hits", "cumulative_hitratio", "cumulative_inserts", "cumulative_evictions"]
+            },
+            {
+               "obj":"solr/*:type=filterCache,id=*",
+               "resultAlias":"cache_filter",
+               "attr":[ "cumulative_lookups","cumulative_hits", "cumulative_hits", "cumulative_hitratio", "cumulative_inserts", "cumulative_evictions"]
+            },
+            {
+               "obj":"solr/*:type=documentCache,id=*",
+               "resultAlias":"cache_document",
+               "attr":[  "cumulative_lookups", "cumulative_hits", "cumulative_hits", "cumulative_hitratio", "cumulative_inserts",  "cumulative_evictions"]
+            },
+            {
+               "obj":"solr/*:type=searcher,id=org.apache.solr.search.SolrIndexSearcher",
+               "resultAlias":"stats-searcher",
+               "attr":[ "numDocs", "maxDoc", "warmupTime" ]
+            },
+            {
+               "obj":"solr/*:type=/select,id=org.apache.solr.handler.component.SearchHandler",
+               "resultAlias":"stats-handler-select",
+               "attr":[ "requests", "5minRateReqsPerSecond", "15minRateReqsPerSecond", "medianRequestTime", "75thPcRequestTime", "95thPcRequestTime", "99thPcRequestTime", "999thPcRequestTime" ]
+            },
+            {
+               "obj":"solr/*:type=/update,id=org.apache.solr.handler.UpdateRequestHandler",
+               "resultAlias":"stats-handler-update",
+               "attr":[ "requests", "5minRateReqsPerSecond", "15minRateReqsPerSecond", "medianRequestTime", "75thPcRequestTime", "95thPcRequestTime", "99thPcRequestTime", "999thPcRequestTime" ]
+            }
+         ]
+      },
+      {
+        "outputWriters":[
+           {
+              "@class":"com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url":"http://127.0.0.1:8086/",
+              "database":"solrjmx",
+              "username":"admin",
+              "password":"admin"
+           }
+        ],
+         "host":"localhost",
+         "alias":"solr-2.allstate.com",
+         "port":"3102",
+         "queries":[
+            {
+               "obj":"java.lang:type=Memory",
+               "resultAlias":"jvm_memory",
+               "attr":[ "HeapMemoryUsage", "NonHeapMemoryUsage"
+               ]},
+            {
+               "obj":"java.lang:type=MemoryPool,name=CMS Old Gen",
+               "resultAlias":"jvm_memory_pool_cms",
+               "attr":["Usage"]
+            },
+            {
+               "obj":"java.lang:type=MemoryPool,name=Par Eden Space",
+               "resultAlias":"jvm_memory_pool_eden_space",
+               "attr":["Usage"]
+            },
+            {
+               "obj":"java.lang:type=MemoryPool,name=Par Survivor Space",
+               "resultAlias":"jvm_memory_pool_surv_space",
+               "attr":["Usage"]
+            },
+            {
+               "obj":"java.lang:type=GarbageCollector,name=*",
+               "resultAlias":"jvm_gc",
+               "attr":[ "Name", "CollectionCount", "CollectionTime"]
+            },
+            {
+               "obj":"java.lang:type=Threading",
+               "resultAlias":"jvm_thread",
+               "attr":[ "ThreadCount", "PeakThreadCount", "DaemonThreadCount", "TotalStartedThreadCount"]
+            },
+            {
+               "obj":"solr/*:type=queryResultCache,id=*",
+               "resultAlias":"cache_queryresult",
+               "attr":[ "cumulative_lookups","cumulative_hits", "cumulative_hits", "cumulative_hitratio", "cumulative_inserts", "cumulative_evictions"]
+            },
+            {
+               "obj":"solr/*:type=fieldValueCache,id=*",
+               "resultAlias":"cache_fieldvalue",
+               "attr":[ "cumulative_lookups","cumulative_hits", "cumulative_hits", "cumulative_hitratio", "cumulative_inserts", "cumulative_evictions"]
+            },
+            {
+               "obj":"solr/*:type=filterCache,id=*",
+               "resultAlias":"cache_filter",
+               "attr":[ "cumulative_lookups","cumulative_hits", "cumulative_hits", "cumulative_hitratio", "cumulative_inserts", "cumulative_evictions"]
+            },
+            {
+               "obj":"solr/*:type=documentCache,id=*",
+               "resultAlias":"cache_document",
+               "attr":[  "cumulative_lookups", "cumulative_hits", "cumulative_hits", "cumulative_hitratio", "cumulative_inserts",  "cumulative_evictions"]
+            },
+            {
+               "obj":"solr/*:type=searcher,id=org.apache.solr.search.SolrIndexSearcher",
+               "resultAlias":"stats-searcher",
+               "attr":[ "numDocs", "maxDoc", "warmupTime" ]
+            },
+            {
+               "obj":"solr/*:type=/select,id=org.apache.solr.handler.component.SearchHandler",
+               "resultAlias":"stats-handler-select",
+               "attr":[ "requests", "5minRateReqsPerSecond", "15minRateReqsPerSecond", "medianRequestTime", "75thPcRequestTime", "95thPcRequestTime", "99thPcRequestTime", "999thPcRequestTime" ]
+            },
+            {
+               "obj":"solr/*:type=/update,id=org.apache.solr.handler.UpdateRequestHandler",
+               "resultAlias":"stats-handler-update",
+               "attr":[ "requests", "5minRateReqsPerSecond", "15minRateReqsPerSecond", "medianRequestTime", "75thPcRequestTime", "95thPcRequestTime", "99thPcRequestTime", "999thPcRequestTime" ]
+            }
+         ]
+      }
+   ]
+}
